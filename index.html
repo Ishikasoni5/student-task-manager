@@ -23,7 +23,7 @@
         h1 {
             text-align: center;
             color: #2c3e50;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         .subtitle {
             text-align: center;
@@ -59,10 +59,12 @@
             cursor: pointer;
             font-weight: bold;
             margin-top: 10px;
+            transition: 0.3s;
         }
         button:hover {
             background-color: #2980b9;
         }
+
         #taskList {
             list-style: none;
             padding: 0;
@@ -77,12 +79,19 @@
             align-items: center;
             gap: 12px;
         }
+        .task-item.completed {
+            opacity: 0.7;
+            text-decoration: line-through;
+        }
+        .priority-high { border-left: 5px solid #e74c3c; }
+        .priority-medium { border-left: 5px solid #f39c12; }
+        .priority-low { border-left: 5px solid #27ae60; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>📋 Student Task Manager</h1>
-        <p class="subtitle">Stay organized with your tasks</p>
+        <p class="subtitle">Stay organized • Finish on time</p>
         
         <div class="task-form">
             <h2>Add New Task</h2>
@@ -109,20 +118,30 @@
             <button onclick="addTask()">+ Add Task</button>
         </div>
 
-        <h2>Your Tasks</h2>
-        <ul id="taskList"></ul>
+        <h2>Your Tasks (2)</h2>
+        <ul id="taskList">
+            <!-- Sample Tasks -->
+            <li class="task-item priority-medium">
+                <input type="checkbox">
+                <span>Complete resume optimization for internship applications</span>
+                <span style="margin-left: auto; color: #f39c12;">Medium • 20 May</span>
+            </li>
+            <li class="task-item priority-high">
+                <input type="checkbox">
+                <span>Study Computer Networks for exam</span>
+                <span style="margin-left: auto; color: #e74c3c;">High • 18 May</span>
+            </li>
+        </ul>
     </div>
 
     <script>
         function addTask() {
-            const title = document.getElementById('taskTitle').value;
-            if (title.trim() === "") {
+            const title = document.getElementById('taskTitle').value.trim();
+            if (title === "") {
                 alert("Please enter a task title!");
                 return;
             }
-            alert(`✅ Task Added: "${title}"\n\n(Full functionality coming in JavaScript Phase)`);
-            
-            // Clear input after adding
+            alert(`✅ Task Added Successfully!\n\n"${title}"\n\n(We will make tasks actually appear in the list in JavaScript Phase)`);
             document.getElementById('taskTitle').value = "";
         }
     </script>
